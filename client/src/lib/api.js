@@ -82,13 +82,23 @@ async function request(path, { method = 'GET', body, signal, raw = false } = {})
   try {
     payload = text ? JSON.parse(text) : {};
   } catch {
-    throw new ApiError('The server returned an unexpected response.', {
-      status: res.status,
-    });
+    const contentType = res.headers.get('content-type') ?? '(none)';
+    const preview = text ? JSON.stringify(text.slice(0, 200)) : '(empty body)';
+    throw new ApiError(
+      `The server returned an unexpected response (${res.status}, ${contentType}).`,
+      {
+        status: res.status,
+        details: { contentType, bodyPreview: preview },
+      },
+    );
   }
 
   if (!res.ok || payload.success === false) {
-    throw new ApiError(payload.message || `Request failed (${res.status})`, {
+    const message =
+      res.status === 502 || res.status === 503 || res.status === 504
+        ? 'The server is temporarily unavailable. Please try again.'
+        : payload.message || `Request failed (${res.status})`;
+    throw new ApiError(message, {
       status: res.status,
       details: payload.details,
     });
