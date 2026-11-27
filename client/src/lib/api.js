@@ -7,7 +7,14 @@
  */
 
 export const API_URL =
-  process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+  typeof window === 'undefined'
+    ? // Server-side (Next.js functions): use the Vercel service binding.
+      // Vercel injects SERVER_URL at runtime in functions only — never at
+      // build time and never in middleware.
+      process.env.SERVER_URL || process.env.NEXT_PUBLIC_API_URL || '/api'
+    : // Browser: same-origin public path. Vercel rewrites /api/* to the
+      // server service, so the browser never touches the internal URL.
+      process.env.NEXT_PUBLIC_API_URL || '/api';
 
 const TOKEN_KEY = 'aquapure_token';
 
@@ -63,7 +70,7 @@ async function request(path, { method = 'GET', body, signal, raw = false } = {})
   } catch (err) {
     if (err.name === 'AbortError') throw err;
     throw new ApiError(
-      'Cannot reach the server. Is the API running on port 5000?',
+      'Cannot reach the server. Check NEXT_PUBLIC_API_URL (browser) or SERVER_URL (server).',
       { status: 0 },
     );
   }

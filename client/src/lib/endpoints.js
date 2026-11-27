@@ -86,7 +86,7 @@ export const reportApi = {
   reconcile: (shiftId, body) => api.patch(`/reports/shifts/${shiftId}/reconcile`, body),
 };
 
-const BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+const BASE = process.env.NEXT_PUBLIC_API_URL || '/api';
 
 /** Triggers a browser download of a server-rendered CSV. */
 export async function downloadCsv(path, filename) {
