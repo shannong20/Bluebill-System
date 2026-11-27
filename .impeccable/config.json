@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreValues": {
+      "overused-font": [
+        "Plus Jakarta Sans",
+        "plus jakarta sans",
+        "Inter",
+        "inter",
+        "Outfit",
+        "DM Sans",
+        "dm sans"
+      ]
+    }
+  }
+}
+

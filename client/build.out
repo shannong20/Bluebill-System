@@ -1,0 +1,35 @@
+
+> bluebill-client@1.0.0 build
+> next build
+
+  ▲ Next.js 14.2.35
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/10) ...
+   Generating static pages (2/10) 
+   Generating static pages (4/10) 
+   Generating static pages (7/10) 
+ ✓ Generating static pages (10/10)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                              Size     First Load JS
+┌ ○ /                                    138 B          87.4 kB
+├ ○ /_not-found                          873 B          88.1 kB
+├ ○ /dashboard                           5.75 kB        96.1 kB
+├ ○ /employees                           3.65 kB        98.3 kB
+├ ○ /inventory                           7.3 kB         97.6 kB
+├ ○ /login                               2.97 kB        93.3 kB
+├ ○ /point-of-sale                       7.49 kB        97.8 kB
+└ ○ /reports                             2.84 kB        97.5 kB
++ First Load JS shared by all            87.3 kB
+  ├ chunks/117-440a2084f7673f42.js       31.7 kB
+  ├ chunks/fd9d1056-a9394cb017d46d98.js  53.6 kB
+  └ other shared chunks (total)          1.89 kB
+
+
+○  (Static)  prerendered as static content
+
